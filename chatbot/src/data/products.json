@@ -1,0 +1,122 @@
+[
+  {
+    "id": "p001",
+    "name": "薰衣草寧靜夜晚精油",
+    "price": 680,
+    "scentNotes": ["薰衣草", "洋甘菊", "佛手柑"],
+    "scenarios": ["relax", "sleep"],
+    "popularity": 5,
+    "inStock": true,
+    "description": "富含純天然薰衣草，舒緩一天的緊繃情緒，幫助深沉入眠。",
+    "emoji": "💜",
+    "category": "精油"
+  },
+  {
+    "id": "p002",
+    "name": "雪松森林擴香石",
+    "price": 420,
+    "scentNotes": ["雪松", "松針", "廣藿香"],
+    "scenarios": ["nature", "focus"],
+    "popularity": 4,
+    "inStock": true,
+    "description": "模擬漫步森林的清新木質香氣，提升專注力與心靈沉靜。",
+    "emoji": "🌲",
+    "category": "擴香"
+  },
+  {
+    "id": "p003",
+    "name": "柑橘清晨活力滾珠",
+    "price": 350,
+    "scentNotes": ["甜橙", "檸檬", "葡萄柚"],
+    "scenarios": ["fresh", "focus"],
+    "popularity": 4,
+    "inStock": true,
+    "description": "輕盈果香點亮清晨的好心情，隨身攜帶超方便。",
+    "emoji": "🍊",
+    "category": "滾珠"
+  },
+  {
+    "id": "p004",
+    "name": "玫瑰禮盒三入組",
+    "price": 1280,
+    "scentNotes": ["玫瑰", "茉莉", "依蘭"],
+    "scenarios": ["gift", "relax"],
+    "popularity": 5,
+    "inStock": true,
+    "description": "精美禮盒包裝，送禮自用兩相宜，三款玫瑰香調任君選擇。",
+    "emoji": "🌹",
+    "category": "禮盒"
+  },
+  {
+    "id": "p005",
+    "name": "歐薄荷提神香氛蠟燭",
+    "price": 520,
+    "scentNotes": ["歐薄荷", "尤加利", "迷迭香"],
+    "scenarios": ["focus", "fresh"],
+    "popularity": 3,
+    "inStock": true,
+    "description": "清涼薄荷加上尤加利，燃燒時釋放清晰思緒的涼感香氣。",
+    "emoji": "🕯️",
+    "category": "蠟燭"
+  },
+  {
+    "id": "p006",
+    "name": "依蘭助眠薰香機套組",
+    "price": 980,
+    "scentNotes": ["依蘭", "薰衣草", "檀香"],
+    "scenarios": ["sleep", "relax"],
+    "popularity": 4,
+    "inStock": false,
+    "description": "超音波薰香機＋20ml 精油，一鍵開啟助眠模式。",
+    "emoji": "🌙",
+    "category": "套組"
+  },
+  {
+    "id": "p007",
+    "name": "雨後森林室內噴霧",
+    "price": 290,
+    "scentNotes": ["雨水岩石", "雪松", "綠茶"],
+    "scenarios": ["nature", "fresh"],
+    "popularity": 3,
+    "inStock": true,
+    "description": "捕捉雨後泥土與草葉的清新氣息，即噴即享大自然。",
+    "emoji": "🌧️",
+    "category": "噴霧"
+  },
+  {
+    "id": "p008",
+    "name": "廣藿香禪意香薰禮盒",
+    "price": 1580,
+    "scentNotes": ["廣藿香", "乳香", "沒藥"],
+    "scenarios": ["gift", "relax", "nature"],
+    "popularity": 4,
+    "inStock": true,
+    "description": "東方木質調香氛禮盒，禪意包裝適合高端送禮場合。",
+    "emoji": "🎁",
+    "category": "禮盒"
+  },
+  {
+    "id": "p009",
+    "name": "晨霧綠茶淨化噴霧",
+    "price": 320,
+    "scentNotes": ["綠茶", "白麝香", "百合"],
+    "scenarios": ["fresh", "sleep"],
+    "popularity": 3,
+    "inStock": true,
+    "description": "輕盈水感茶香，噴灑於枕頭或空間，帶來清爽寧靜。",
+    "emoji": "🍵",
+    "category": "噴霧"
+  },
+  {
+    "id": "p010",
+    "name": "乳香靜心冥想精油",
+    "price": 760,
+    "scentNotes": ["乳香", "檀香", "橙花"],
+    "scenarios": ["focus", "relax", "nature"],
+    "popularity": 5,
+    "inStock": true,
+    "description": "古老乳香聖木精油，深化冥想體驗，提升心靈專注。",
+    "emoji": "🧘",
+    "category": "精油"
+  }
+]
