@@ -38,6 +38,7 @@ import json
 import logging
 import os
 import re
+import signal
 import sys
 import time
 import traceback
@@ -300,6 +301,7 @@ class SlackNotebookBot:
         self._cache = cache
         self._app = AsyncApp(token=os.environ["SLACK_BOT_TOKEN"])
         self._handler = AsyncSocketModeHandler(self._app, os.environ["SLACK_APP_TOKEN"])
+        self._tasks: set[asyncio.Task] = set()
         self._register_handlers()
 
     def _register_handlers(self) -> None:
@@ -312,9 +314,35 @@ class SlackNotebookBot:
             await self._handle_slash_command(ack, body, client)
 
     async def start(self) -> None:
-        """Start the bot using Socket Mode."""
+        """Start the bot; handle SIGTERM/SIGINT for graceful shutdown."""
+        loop = asyncio.get_running_loop()
+        stop = asyncio.Event()
+
+        for sig in (signal.SIGTERM, signal.SIGINT):
+            loop.add_signal_handler(sig, stop.set)
+
         logger.info("Starting Slack NotebookLM bot (Socket Mode)…")
-        await self._handler.start_async()
+        handler_task = asyncio.create_task(self._handler.start_async())
+
+        await stop.wait()
+        logger.info("Shutdown signal received, waiting for %d task(s)…", len(self._tasks))
+
+        if self._tasks:
+            await asyncio.wait(self._tasks, timeout=30)
+
+        handler_task.cancel()
+        try:
+            await handler_task
+        except asyncio.CancelledError:
+            pass
+        logger.info("Bot stopped.")
+
+    def _create_task(self, coro) -> asyncio.Task:
+        """Create a tracked background task; remove it from the set when done."""
+        task = asyncio.create_task(coro)
+        self._tasks.add(task)
+        task.add_done_callback(self._tasks.discard)
+        return task
 
     # ------------------------------------------------------------------
     # Event handlers
@@ -345,11 +373,11 @@ class SlackNotebookBot:
         )
         thinking_ts: str = resp["ts"]
 
-        asyncio.create_task(self._ask_bridge(channel_id, question, thread_ts, thinking_ts, client))
+        self._create_task(self._ask_bridge(channel_id, question, thread_ts, thinking_ts, client))
 
     async def _handle_slash_command(self, ack, body: dict, client) -> None:
         await ack()  # Must respond within 3 seconds
-        asyncio.create_task(self._process_slash(body, client))
+        self._create_task(self._process_slash(body, client))
 
     # ------------------------------------------------------------------
     # Slash command logic (runs as a background task)

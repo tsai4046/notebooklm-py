@@ -1,0 +1,26 @@
+[Unit]
+Description=NotebookLM Slack Bot
+Documentation=https://github.com/tsai4046/notebooklm-py
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# 由 install.sh 寫入實際的使用者名稱
+User=__USER__
+# 從 ~/.notebooklm/.env.slack 讀取環境變數（包含 Slack tokens 和 API keys）
+EnvironmentFile=__HOME__/.notebooklm/.env.slack
+# 由 install.sh 寫入實際的 Python 路徑和腳本路徑
+ExecStart=__PYTHON__ __BOT_SCRIPT__
+# 崩潰後自動重啟，間隔 10 秒
+Restart=on-failure
+RestartSec=10
+# 優雅關閉：先送 SIGTERM，等 30 秒後才 SIGKILL
+TimeoutStopSec=35
+# 將日誌導向 systemd journal（用 journalctl -u notebooklm-slack-bot 查看）
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=notebooklm-slack-bot
+
+[Install]
+WantedBy=multi-user.target
